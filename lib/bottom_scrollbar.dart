@@ -14,14 +14,17 @@ class BottomScrollBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(10),
+      padding: EdgeInsets.all(20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          BottomBarItem(
-              icons: Icons.thumb_up,
-              onIconPressed: onLikePressed,
-              label: 'Like'),
+          Center(
+            child: BottomBarItem(
+                icons: Icons.thumb_up,
+                onIconPressed: onLikePressed,
+                label: 'Like'),
+          ),
           BottomBarItem(
               icons: Icons.comment,
               onIconPressed: onCommentPressed,

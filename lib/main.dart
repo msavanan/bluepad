@@ -6,13 +6,23 @@ void main() {
 }
 
 class BluePad extends StatelessWidget {
-  final _messangerKey = GlobalKey<ScaffoldMessengerState>();
+  final _messengerKey = GlobalKey<ScaffoldMessengerState>();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      scaffoldMessengerKey: _messangerKey,
+      scaffoldMessengerKey: _messengerKey,
       theme: ThemeData(
         primaryColor: Colors.white,
+        outlinedButtonTheme: OutlinedButtonThemeData(
+          style: OutlinedButton.styleFrom(
+            primary: Colors.black,
+            side: BorderSide(color: Colors.black, width: 2),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(
+              Radius.circular(20),
+            )),
+          ),
+        ),
       ),
       home: Scaffold(
         appBar: AppBar(
@@ -24,12 +34,12 @@ class BluePad extends StatelessWidget {
           leading: IconButton(
             icon: Icon(Icons.home),
             onPressed: () {
-              _messangerKey.currentState
+              _messengerKey.currentState
                   .showSnackBar(SnackBar(content: Text('Home button pressed')));
             },
           ),
         ),
-        body: NewContentWidget(),
+        body: NewsContentWidget(),
       ),
     );
   }
