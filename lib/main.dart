@@ -1,4 +1,4 @@
-import 'package:bluepad/news_content_widget.dart';
+import 'package:bluepad/news_content/news_content_widget.dart';
 import 'package:flutter/material.dart';
 
 void main() {

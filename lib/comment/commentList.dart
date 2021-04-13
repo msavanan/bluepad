@@ -1,4 +1,4 @@
-import 'package:bluepad/comment_widgets.dart';
+import 'package:bluepad/comment/comment_widgets.dart';
 import 'package:flutter/material.dart';
 
 class CommentList extends StatelessWidget {

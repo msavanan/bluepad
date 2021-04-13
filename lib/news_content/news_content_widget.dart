@@ -1,13 +1,14 @@
 import 'dart:ui';
 
-import 'package:bluepad/article_owner.dart';
-import 'package:bluepad/bottom_scrollbar.dart';
-import 'package:bluepad/commentList.dart';
-import 'package:bluepad/comment_field.dart';
-import 'package:bluepad/news_content.dart';
+import 'package:bluepad/author/article_owner.dart';
+import 'package:bluepad/author/author.dart';
+import 'package:bluepad/widgets/bottom_scrollbar.dart';
+import 'package:bluepad/comment/commentList.dart';
+import 'package:bluepad/comment/comment_field.dart';
+import 'package:bluepad/news_content/news_content.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'constants.dart';
+import '../constants.dart';
 
 class NewsContentWidget extends StatefulWidget {
   @override
@@ -171,6 +172,8 @@ class _NewsContentWidgetState extends State<NewsContentWidget> {
 
 List<Widget> buildContent() {
   List<Widget> textList = [];
+  final Author newAuthor = Author();
+
   for (int i = 0; i < newsContent.length; i++) {
     bool spacing = newsContent[i]['heading'];
     textList.add(Text(
@@ -185,6 +188,11 @@ List<Widget> buildContent() {
   }
 
   textList.add(SizedBox(height: 100));
+
+  Widget author = creator(newAuthor.imagePath);
+
+  textList.insert(2, author);
+  textList.insert(3, headingSpace);
 
   return textList;
 }
