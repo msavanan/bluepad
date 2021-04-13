@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:bluepad/article_owner.dart';
 import 'package:bluepad/bottom_scrollbar.dart';
+import 'package:bluepad/commentList.dart';
 import 'package:bluepad/comment_field.dart';
 import 'package:bluepad/news_content.dart';
 import 'package:flutter/cupertino.dart';
@@ -177,6 +178,7 @@ class _NewsContentWidgetState extends State<NewsContentWidget> {
               Divider(),
               CommentField(),
               Divider(),
+              CommentList(),
               SizedBox(height: 25),
             ],
           ),

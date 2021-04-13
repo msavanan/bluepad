@@ -1,3 +1,4 @@
+import 'package:bluepad/constants.dart';
 import 'package:flutter/material.dart';
 
 class ArticleOwner extends StatelessWidget {
@@ -10,6 +11,7 @@ class ArticleOwner extends StatelessWidget {
         children: [
           CircleAvatar(
             child: Text('A'),
+            radius: radius,
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,

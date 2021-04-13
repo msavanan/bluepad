@@ -1,3 +1,5 @@
+import 'package:bluepad/constants.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CommentField extends StatelessWidget {
@@ -11,7 +13,7 @@ class CommentField extends StatelessWidget {
         children: [
           Expanded(
             child: CircleAvatar(
-              radius: 30,
+              radius: radius,
               child: Text('D'),
             ),
           ),
