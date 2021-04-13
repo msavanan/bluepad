@@ -1,3 +1,4 @@
+import 'package:bluepad/constants.dart';
 import 'package:flutter/material.dart';
 
 class BottomScrollBar extends StatelessWidget {
@@ -14,7 +15,7 @@ class BottomScrollBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(20),
+      padding: EdgeInsets.all(paddingSpace),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.center,

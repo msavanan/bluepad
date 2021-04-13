@@ -5,3 +5,4 @@ TextStyle paragraph = TextStyle(fontSize: 20);
 SizedBox headingSpace = SizedBox(height: 20);
 SizedBox paragraphSpace = SizedBox(height: 50);
 double radius = 30;
+double paddingSpace = 20;

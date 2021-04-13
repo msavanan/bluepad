@@ -28,7 +28,6 @@ class _NewsContentWidgetState extends State<NewsContentWidget> {
   onLikePressed() {
     print('Call From NewsContentWidget');
     print('onLikePressed');
-    _getPositions();
     setState(() {
       likesCount++;
     });
@@ -52,40 +51,6 @@ class _NewsContentWidgetState extends State<NewsContentWidget> {
     print('onSavePressed');
   }
 
-  _getPositions() {
-    final RenderBox renderBoxRed =
-        _countWidget.currentContext.findRenderObject();
-    final positionRed = renderBoxRed.localToGlobal(Offset.zero);
-
-    final RenderBox newsbox = _newskey.currentContext.findRenderObject();
-    print('News article size = ${newsbox.size}');
-
-    print(renderBoxRed.size.height);
-    newsContentScroller.addListener(() {
-      final RenderBox newsbox = _newskey.currentContext.findRenderObject();
-      print('News article size = ${newsbox.size}');
-      if (newsContentScroller.position.pixels >=
-          (newsbox.size.height - MediaQuery.of(context).size.height)) {
-        //print(newsContentScroller.position.pixels);
-        //print(newsbox.size.height - MediaQuery.of(context).size.height);
-        setState(() {
-          bottomBar = false;
-        });
-      } else {
-        setState(() {
-          bottomBar = true;
-        });
-      }
-
-      // Do nothing now
-    });
-
-    //var t = PointTransformer(positionRed);
-    //print("POSITION of Count widget: ${positionRed.dy} ");
-    //print('position of scroll Controller: ${newsContentScroller.position}.');
-    //print('Device Pixel ratio: ${renderBoxRed.size}');
-  }
-
   @override
   void dispose() {
     newsContentScroller.dispose();
@@ -95,12 +60,15 @@ class _NewsContentWidgetState extends State<NewsContentWidget> {
   @override
   Widget build(BuildContext context) {
     newsContentScroller.addListener(() {
-      final RenderBox newsbox = _newskey.currentContext.findRenderObject();
-      print('News article size = ${newsbox.size}');
+      final RenderBox newsBox = _newskey.currentContext.findRenderObject();
+      final RenderBox bottomBarBox =
+          _countWidget.currentContext.findRenderObject();
+
       if (newsContentScroller.position.pixels >=
-          (newsbox.size.height - MediaQuery.of(context).size.height + 80)) {
-        //print(newsContentScroller.position.pixels);
-        //print(newsbox.size.height - MediaQuery.of(context).size.height);
+          (newsBox.size.height -
+              MediaQuery.of(context).size.height +
+              bottomBarBox.size.height +
+              paddingSpace)) {
         setState(() {
           bottomBar = false;
         });
@@ -116,21 +84,12 @@ class _NewsContentWidgetState extends State<NewsContentWidget> {
         setState(() {
           bottomPage = true;
         });
-
-        /*showBottomSheet(
-            context: context,
-            builder: (context) => Container(
-                  height: MediaQuery.of(context).size.height * 0.05,
-                  child: Center(child: Text('Reached bottom of the page')),
-                ));*/
       } else {
         setState(() {
           bottomPage = false;
         });
       }
     });
-
-    //_getPositions();
     return Stack(children: [
       SingleChildScrollView(
         controller: newsContentScroller,
@@ -160,11 +119,9 @@ class _NewsContentWidgetState extends State<NewsContentWidget> {
                       ],
                     ),
                   ),
-                  Divider(
-                    key: _countWidget,
-                  ),
+                  Divider(),
                   Container(
-                    //key: _countWidget,
+                    key: _countWidget,
                     child: BottomScrollBar(
                         onLikePressed: onLikePressed,
                         onCommentPressed: onCommentPressed,
